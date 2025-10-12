@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS Courses (
     description VARCHAR(255),
     created_at DATE,
     updated_at DATE,
-    deleted_at INT default 0
+    deleted_at SMALLINT default 0
 );
 
 CREATE TABLE IF NOT EXISTS Modules (
@@ -14,13 +14,15 @@ CREATE TABLE IF NOT EXISTS Modules (
     description VARCHAR(255),
     created_at DATE,
     updated_at DATE,
-    deleted_at INT default 0
+    deleted_at SMALLINT default 0
 );
 
 CREATE TABLE IF NOT EXISTS Course_modules (
-    course_id BIGINT REFERENCES Courses(id),
-    module_id BIGINT REFERENCES Modules(id),
-    PRIMARY KEY (course_id, module_id)
+    course_id BIGINT,
+    module_id BIGINT,
+    PRIMARY KEY (course_id, module_id),
+	FOREIGN KEY (course_id) REFERENCES Courses(id),
+	FOREIGN KEY (module_id) REFERENCES Modules(id)
 );
 
 CREATE TABLE IF NOT EXISTS Programs (
@@ -33,9 +35,11 @@ CREATE TABLE IF NOT EXISTS Programs (
 );
 
 CREATE TABLE IF NOT EXISTS Program_modules (
-    program_id BIGINT REFERENCES Programs(id),
-    module_id BIGINT REFERENCES Modules(id),
-    PRIMARY KEY (program_id, module_id)
+    program_id BIGINT,
+    module_id BIGINT,
+    PRIMARY KEY (program_id, module_id),
+	FOREIGN KEY (program_id) REFERENCES Programs(id),
+	FOREIGN KEY (module_id) REFERENCES Modules(id)
 );
 
 CREATE TABLE IF NOT EXISTS Lessons (
@@ -47,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Lessons (
     position INTEGER,
     created_at DATE,
     updated_at DATE,
-    deleted_at INT default 0
+    deleted_at SMALLINT default 0
 );
 
 --2 step
@@ -69,7 +73,7 @@ CREATE TABLE IF NOT EXISTS Users (
     role role_status,
     created_at DATE,
     updated_at DATE,
-    deleted_at INT default 0
+    deleted_at SMALLINT default 0
 );
 
 --3 step
