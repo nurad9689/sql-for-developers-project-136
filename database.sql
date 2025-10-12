@@ -125,3 +125,25 @@ CREATE TABLE IF NOT EXISTS Exercises (
     careated_at DATE,
     updated_at DATE    
 );
+
+--5 step
+CREATE TABLE IF NOT EXISTS Discussions (
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    lesson_id BIGINT REFERENCES Lessons(id),
+    parent_id BIGINT REFERENCES Discussions(id),
+    description TEXT,
+    careated_at DATE,
+    updated_at DATE    
+);
+
+CREATE TYPE blog_status AS ENUM ('created', 'in moderation', 'published', 'archived');
+
+CREATE TABLE IF NOT EXISTS Blog (
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id BIGINT REFERENCES Users(id),
+    title VARCHAR(255),
+    description TEXT,
+    status blog_status,
+    careated_at DATE,
+    updated_at DATE    
+);
