@@ -18,8 +18,9 @@ CREATE TABLE IF NOT EXISTS Modules (
 );
 
 CREATE TABLE IF NOT EXISTS Course_modules (
-    course_id REFERENCES Courses(id),
-    module_id REFERENCES Modules(id)
+    course_id BIGINT REFERENCES Courses(id),
+    module_id BIGINT REFERENCES Modules(id),
+    PRIMARY KEY (course_id, module_id)
 );
 
 CREATE TABLE IF NOT EXISTS Programs (
@@ -32,8 +33,9 @@ CREATE TABLE IF NOT EXISTS Programs (
 );
 
 CREATE TABLE IF NOT EXISTS Program_modules (
-    program_id REFERENCES Programs(id),
-    module_id REFERENCES Modules(id)
+    program_id BIGINT REFERENCES Programs(id),
+    module_id BIGINT REFERENCES Modules(id),
+    PRIMARY KEY (program_id, module_id)
 );
 
 CREATE TABLE IF NOT EXISTS Lessons (
@@ -53,7 +55,7 @@ CREATE TYPE role_status AS ENUM ('student', 'teacher', 'admin');
 
 CREATE TABLE IF NOT EXISTS Teaching_groups (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    slug role,
+    slug VARCHAR(255),
     created_at DATE,
     updated_at DATE    
 );
