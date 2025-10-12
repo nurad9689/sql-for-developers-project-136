@@ -105,3 +105,23 @@ CREATE TABLE IF NOT EXISTS Certificates (
     careated_at DATE,
     updated_at DATE    
 );
+
+--4 step
+CREATE TABLE IF NOT EXISTS Quizzes (
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    lesson_id BIGINT REFERENCES Lessons(id),
+    title VARCHAR(255),
+    description TEXT,
+    parent_id BIGINT REFERENCES Quizzes(id),
+    careated_at DATE,
+    updated_at DATE
+);
+
+CREATE TABLE IF NOT EXISTS Exercises (
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    lesson_id BIGINT REFERENCES Lessons(id),
+    title VARCHAR(255),
+    url VARCHAR(255),
+    careated_at DATE,
+    updated_at DATE    
+);
