@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS Lessons (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     course_id BIGINT REFERENCES Courses(id),
     name VARCHAR(255),
-    description VARCHAR(255),
+    content VARCHAR(255),
     video_url VARCHAR(255),
-    possition INTEGER,
+    position INTEGER,
     created_at DATE,
     updated_at DATE,
     deleted_at INT default 0
