@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS Course_modules (
     course_id BIGINT,
     module_id BIGINT,
     PRIMARY KEY (course_id, module_id),
-	FOREIGN KEY (course_id) REFERENCES Courses(id),
-	FOREIGN KEY (module_id) REFERENCES Modules(id)
+	FOREIGN KEY (course_id) REFERENCES Courses(id) ON DELETE CASCADE,
+	FOREIGN KEY (module_id) REFERENCES Modules(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Programs (
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS Program_modules (
     program_id BIGINT,
     module_id BIGINT,
     PRIMARY KEY (program_id, module_id),
-	FOREIGN KEY (program_id) REFERENCES Programs(id),
-	FOREIGN KEY (module_id) REFERENCES Modules(id)
+	FOREIGN KEY (program_id) REFERENCES Programs(id) ON DELETE CASCADE,
+	FOREIGN KEY (module_id) REFERENCES Modules(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Lessons (
