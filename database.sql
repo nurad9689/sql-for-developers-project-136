@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Program_modules (
 
 CREATE TABLE IF NOT EXISTS Lessons (
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    course_id BIGINT REFERENCES Courses(id),
+    course_id BIGINT NOT NULL REFERENCES Courses(id) ON DELETE CASCADE,
     name VARCHAR(255),
     content VARCHAR(255),
     video_url VARCHAR(255),
